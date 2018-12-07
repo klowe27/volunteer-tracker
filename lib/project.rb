@@ -53,7 +53,8 @@ class Project
       name = volunteer["name"]
       project_id = volunteer["project_id"].to_i
       id = volunteer["id"].to_i
-      volunteers.push(Volunteer.new({name: name, project_id: project_id, id: id}))
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({name: name, project_id: project_id, hours: hours, id: id}))
     end
     volunteers
   end
@@ -65,7 +66,8 @@ class Project
       name = volunteer["name"]
       project_id = volunteer["project_id"].to_i
       id = volunteer["id"].to_i
-      volunteers.push(Volunteer.new({name: name, project_id: project_id, id: id}))
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({name: name, project_id: project_id, hours: hours, id: id}))
     end
     volunteers
   end

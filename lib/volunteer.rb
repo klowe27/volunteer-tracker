@@ -1,10 +1,11 @@
 class Volunteer
-  attr_reader :name, :project_id, :id
+  attr_reader :name, :project_id, :hours, :id
 
   def initialize(attributes)
-    @name = attributes.fetch(:name)
-    @project_id = attributes.fetch(:project_id)
-    @id = attributes.fetch(:id)
+    @name = attributes[:name]
+    @project_id = attributes[:project_id]
+    @hours = attributes[:hours]
+    @id = attributes[:id]
   end
 
   def self.all
@@ -14,7 +15,12 @@ class Volunteer
       name = volunteer["name"]
       project_id = volunteer["project_id"].to_i
       id = volunteer["id"].to_i
-      volunteers.push(Volunteer.new({name: name, project_id: project_id, id: id}))
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({
+        name: name,
+        project_id: project_id,
+        hours: hours,
+        id: id}))
     end
     volunteers
   end
@@ -26,24 +32,34 @@ class Volunteer
       name = volunteer["name"]
       project_id = volunteer["project_id"].to_i
       id = volunteer["id"].to_i
-      volunteers.push(Volunteer.new({name: name, project_id: project_id, id: id}))
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({
+        name: name,
+        project_id: project_id,
+        hours: hours,
+        id: id}))
     end
-    volunteers 
+    volunteers
   end
 
   def self.find(volunteer_id)
     result = DB.exec("SELECT * FROM volunteers WHERE id = #{volunteer_id}")
-    Volunteer.new({name: result.first["name"], project_id: result.first["project_id"].to_i, id: result.first["id"].to_i})
+    Volunteer.new({
+      name: result.first["name"],
+      project_id: result.first["project_id"].to_i,
+      hours: result.first["hours"].to_i,
+      id: result.first["id"].to_i})
   end
 
   def save
-    @id = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;").first["id"].to_i
+    @id = DB.exec("INSERT INTO volunteers (name, project_id, hours) VALUES ('#{@name}', #{@project_id}, #{@hours}) RETURNING id;").first["id"].to_i
   end
 
   def update(attributes)
     @name = attributes[:name]
     @project_id = attributes[:project_id]
-    DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id} WHERE id = #{@id};")
+    @hours = attributes[:hours]
+    DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id}, hours = #{@hours} WHERE id = #{@id};")
   end
 
   def delete

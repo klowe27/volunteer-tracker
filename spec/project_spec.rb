@@ -65,9 +65,9 @@ describe Project do
     it 'returns all volunteers for a specific project' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
-      volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :id => nil})
+      volunteer1 = Volunteer.new({:name => 'Jasmine', :project_id => project.id, :hours => 50, :id => nil})
       volunteer1.save
-      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => project.id, :id => nil})
+      volunteer2 = Volunteer.new({:name => 'Joe', :project_id => project.id, :hours => 1, :id => nil})
       volunteer2.save
       expect(project.volunteers).to eq [volunteer1, volunteer2]
     end
@@ -105,9 +105,9 @@ describe Project do
     it 'returns all volunteers for a specific project sorted alphabetically' do
       project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
       project.save
-      volunteer1 = Volunteer.new({:name => 'Martha', :project_id => project.id, :id => nil})
+      volunteer1 = Volunteer.new({:name => 'Martha', :project_id => project.id, :hours => 3, :id => nil})
       volunteer1.save
-      volunteer2 = Volunteer.new({:name => 'Andy', :project_id => project.id, :id => nil})
+      volunteer2 = Volunteer.new({:name => 'Andy', :project_id => project.id, :hours => 6, :id => nil})
       volunteer2.save
       expect(project.volunteers_sort).to eq [volunteer2, volunteer1]
     end

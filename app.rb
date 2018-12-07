@@ -6,7 +6,7 @@ require('./lib/volunteer')
 require('pg')
 require('pry')
 
-# DB = PG.connect({dbname: 'volunteer_tracker'})
+DB = PG.connect({dbname: 'volunteer_tracker'})
 
 get '/' do
   @projects = Project.all
@@ -14,8 +14,20 @@ get '/' do
 end
 
 get '/search' do
-  params['search']
-  
+  search = params['search']
+  @projects = Project.all
+  @volunteers = Volunteer.all
+  @projects.each do |project|
+    if project.title == search
+      redirect("/projects/#{project.id}")
+    end
+  end
+  @volunteers.each do |volunteer|
+    if volunteer.name == search
+      redirect("/volunteers/#{volunteer.id}")
+    end
+  end
+  erb :no_results
 end
 
 post '/projects/add' do
@@ -62,7 +74,8 @@ end
 post '/volunteers/add' do
   name = params['name']
   project_id = params['project_id']
-  volunteer = Volunteer.new({name: name, project_id: project_id, id: nil})
+  hours = params['hours'].to_i
+  volunteer = Volunteer.new({name: name, project_id: project_id, hours: hours, id: nil})
   volunteer.save
   redirect '/'
 end
@@ -80,7 +93,8 @@ patch '/volunteers/:id/edit' do
   @volunteer = Volunteer.find(id)
   new_name = params['name']
   new_project_id = params['project_id']
-  @volunteer.update({name: new_name, project_id: new_project_id, id: id})
+  new_hours = params['hours']
+  @volunteer.update({name: new_name, project_id: new_project_id, hours: new_hours, id: id})
   redirect("/volunteers/#{id}")
 end
 
