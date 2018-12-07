@@ -72,6 +72,19 @@ class Project
     volunteers
   end
 
+  def volunteers_sort_by_hours
+    volunteers_db = DB.exec("SELECT * FROM volunteers WHERE project_id = #{id} ORDER BY hours;")
+    volunteers = []
+    volunteers_db.each do |volunteer|
+      name = volunteer["name"]
+      project_id = volunteer["project_id"].to_i
+      id = volunteer["id"].to_i
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({name: name, project_id: project_id, hours: hours, id: id}))
+    end
+    volunteers
+  end
+
   def hours
     DB.exec("SELECT SUM (hours) AS total FROM volunteers WHERE project_id = #{@id};").first["total"].to_i
   end
