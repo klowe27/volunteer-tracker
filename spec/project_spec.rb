@@ -72,7 +72,7 @@ describe Project do
   #     expect(project.volunteers).to eq [volunteer1, volunteer2]
   #   end
   # end
-  #
+
   # describe '#update' do
   #   it 'allows a user to update a project' do
   #     project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
