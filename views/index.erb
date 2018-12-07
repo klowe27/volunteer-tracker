@@ -42,13 +42,27 @@
   <div class="col-md-12">
     <% if @projects.any? %>
       <h2>Project List</h2>
-      <ul class="list-group">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Project</th>
+            <th scope="col">Volunteers</th>
+            <th scope="col">Hours</th>
+          </tr>
+        </thead>
+        <tbody>
         <% @projects.each do |project| %>
-          <li class="list-group-item"><a href="projects/<%= project.id %>"><%= project.title %></a><span class="badge badge-primary badge-pill"><%= project.volunteers.length %></span></li>
-        <% end %>
+          <tr>
+            <td><a href="projects/<%= project.id %>"><%= project.title %></a></td>
+            <td><span class="badge badge-primary badge-pill"><%= project.volunteers.length %></span></td>
+            <td><span class="badge badge-primary badge-pill"><%= project.hours %></span> </td>
+          </tr>
+            <% end %>
+        </tbody>
+      </table>
       </ul>
       <a href="/sort"><button class="btn-primary btn">Sort A-Z</button></a>
-
     <% end %>
+  </table>
   </div>
 </div>

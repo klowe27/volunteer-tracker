@@ -42,6 +42,23 @@ class Volunteer
     volunteers
   end
 
+  def self.sort_by_hours
+    volunteers_db = DB.exec("SELECT * FROM volunteers ORDER BY hours;")
+    volunteers = []
+    volunteers_db.each do |volunteer|
+      name = volunteer["name"]
+      project_id = volunteer["project_id"].to_i
+      id = volunteer["id"].to_i
+      hours = volunteer["hours"].to_i
+      volunteers.push(Volunteer.new({
+        name: name,
+        project_id: project_id,
+        hours: hours,
+        id: id}))
+    end
+    volunteers
+  end
+
   def self.find(volunteer_id)
     result = DB.exec("SELECT * FROM volunteers WHERE id = #{volunteer_id}")
     Volunteer.new({

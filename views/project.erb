@@ -2,12 +2,26 @@
 
 <% if @volunteers.any? %>
   <h2>Volunteer List</h2>
-  <ul class="list-group">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Hours</th>
+      </tr>
+    </thead>
+    <tbody>
     <% @volunteers.each do |volunteer| %>
-      <li class="list-group-item"><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+      <tr>
+        <td><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></td>
+        <td><span class="badge badge-primary badge-pill"><%= volunteer.hours %></span></td>
+      </tr>
     <% end %>
-  </ul>
+    </tbody>
+  </table>
+
   <a href="/projects/<%= @project.id %>/sort_volunteers"><button class="btn-primary btn">Sort A-Z</button></a>
+  <a href="/projects/<%= @project.id %>/sort_volunteers_by_hours"><button class="btn-primary btn">Sort by hours</button></a>
 <% end %>
 
 <h2>Update Project</h2>

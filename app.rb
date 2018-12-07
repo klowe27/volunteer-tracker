@@ -71,6 +71,14 @@ get '/projects/:id/sort_volunteers' do
   erb :project
 end
 
+get '/projects/:id/sort_volunteers_by_hours' do
+  project_id = params[:id].to_i
+  @project = Project.find(project_id)
+  @volunteers = @project.volunteers_sort_by_hours
+  erb :project
+end
+
+
 post '/volunteers/add' do
   name = params['name']
   project_id = params['project_id']
