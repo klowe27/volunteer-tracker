@@ -64,4 +64,14 @@ describe Volunteer do
       expect(volunteer.project_id).to eq 3
     end
   end
+
+  context '#delete' do
+    it 'allows a user to delete a volunteer' do
+      volunteer = Volunteer.new({:name => 'Kristin', :project_id => 4, :id => nil})
+      volunteer.save
+      volunteer.delete
+      expect(volunteer.all).to eq []
+    end
+  end
+
 end
