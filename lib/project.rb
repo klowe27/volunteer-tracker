@@ -17,6 +17,17 @@ class Project
     projects
   end
 
+  def self.sort
+    projects_db = DB.exec("SELECT * FROM projects ORDER BY title;")
+    projects = []
+    projects_db.each do |project|
+      title = project["title"]
+      id = project["id"].to_i
+      projects.push(Project.new({title: title, id: id}))
+    end
+    projects
+  end
+
   def self.find(project_id)
     result = DB.exec("SELECT * FROM projects WHERE id = #{project_id}")
     Project.new({title: result.first["title"], id: result.first['id'].to_i})

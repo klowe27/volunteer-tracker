@@ -97,7 +97,7 @@ describe Project do
       project.save
       project2 = Project.new({:title => 'Highway restoration', :id => nil})
       project2.save
-      expect(Project.sort).to eq [project2, project1]
+      expect(Project.sort).to eq [project2, project]
     end
   end
 
