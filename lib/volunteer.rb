@@ -28,7 +28,7 @@ class Volunteer
       id = volunteer["id"].to_i
       volunteers.push(Volunteer.new({name: name, project_id: project_id, id: id}))
     end
-    volunteers
+    volunteers 
   end
 
   def self.find(volunteer_id)
