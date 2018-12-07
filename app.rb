@@ -7,3 +7,15 @@ require('pg')
 require('pry')
 
 DB = PG.connect({dbname: 'volunteer_tracker'})
+
+get '/' do
+  @projects = Project.all
+  erb :index
+end
+
+post '/projects/add' do
+  title = params['title']
+  project = Project.new({title: title, id: nil})
+  project.save
+  redirect '/'
+end
