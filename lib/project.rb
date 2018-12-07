@@ -17,6 +17,11 @@ class Project
     projects
   end
 
+  def self.find(project_id)
+    result = DB.exec("SELECT * FROM projects WHERE id = #{project_id}")
+    Project.new({title: result.first["title"], id: result.first['id'].to_i})
+  end
+
   def save
     @id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;").first["id"].to_i
   end
