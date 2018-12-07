@@ -10,8 +10,12 @@ require('pry')
 
 get '/' do
   @projects = Project.all
-  @volunteers = Volunteer.all
   erb :index
+end
+
+get '/search' do
+  params['search']
+  
 end
 
 post '/projects/add' do
@@ -41,6 +45,18 @@ patch '/projects/:id/delete' do
   project = Project.find(id)
   project.delete
   redirect '/'
+end
+
+get '/sort' do
+  @projects = Project.sort
+  erb :index
+end
+
+get '/projects/:id/sort_volunteers' do
+  project_id = params[:id].to_i
+  @project = Project.find(project_id)
+  @volunteers = @project.volunteers_sort
+  erb :project
 end
 
 post '/volunteers/add' do

@@ -7,6 +7,7 @@
       <li class="list-group-item"><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
     <% end %>
   </ul>
+  <a href="/projects/<%= @project.id %>/sort_volunteers"><button class="btn-primary btn">Sort A-Z</button></a>
 <% end %>
 
 <h2>Update Project</h2>
@@ -25,6 +26,3 @@
 
   <button type="submit" class="btn btn-primary">Delete Project</button>
 </form>
-
-<a href="/">
-  <button class="btn btn-primary">Go Home</button></a>
