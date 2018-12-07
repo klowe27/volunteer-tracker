@@ -74,4 +74,14 @@ describe Volunteer do
     end
   end
 
+  describe '.sort' do
+    it 'returns a list of all volunteers sorted alphabetically' do
+      volunteer = Volunteer.new({:name => 'Kristin', :project_id => 4, :id => nil})
+      volunteer.save
+      volunteer2 = Volunteer.new({:name => 'Adam', :project_id => 2, :id => nil})
+      volunteer2.save
+      expect(Volunteer.sort).to eq [volunteer2, volunteer]
+    end
+  end
+
 end
