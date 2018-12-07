@@ -2,8 +2,8 @@ class Project
   attr_reader :title, :id
 
   def initialize(attributes)
-    @title = attributes.fetch(:title)
-    @id = attributes.fetch(:id)
+    @title = attributes[:title]
+    @id = attributes[:id]
   end
 
   def self.all
@@ -24,6 +24,11 @@ class Project
 
   def save
     @id = DB.exec("INSERT INTO projects (title) VALUES ('#{@title}') RETURNING id;").first["id"].to_i
+  end
+
+  def update(attributes)
+    @title = attributes[:title]
+    DB.exec("UPDATE projects SET title = '#{@title}' WHERE id = #{@id};")
   end
 
   def volunteers
