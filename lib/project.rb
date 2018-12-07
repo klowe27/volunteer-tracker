@@ -72,6 +72,10 @@ class Project
     volunteers
   end
 
+  def hours
+    DB.exec("SELECT SUM (hours) AS total FROM volunteers WHERE project_id = #{@id};").first["total"].to_i
+  end
+
   def ==(another_object)
     self.id.==(another_object.id).&self.title.==(another_object.title)
   end
