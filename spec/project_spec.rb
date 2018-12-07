@@ -101,4 +101,15 @@ describe Project do
     end
   end
 
+  describe '#volunteers_sorted' do
+    it 'returns all volunteers for a specific project sorted alphabetically' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      volunteer1 = Volunteer.new({:name => 'Martha', :project_id => project.id, :id => nil})
+      volunteer1.save
+      volunteer2 = Volunteer.new({:name => 'Andy', :project_id => project.id, :id => nil})
+      volunteer2.save
+      expect(project.volunteers_sort).to eq [volunteer2, volunteer1]
+    end
+  end
 end
