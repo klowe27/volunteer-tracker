@@ -27,7 +27,6 @@ describe 'the project update path', {:type => :feature} do
     test_project.save
     visit '/'
     click_link('Teaching Kids to Code')
-    click_link('Edit Project')
     fill_in('title', :with => 'Teaching Ruby to Kids')
     click_button('Update Project')
     expect(page).to have_content('Teaching Ruby to Kids')
@@ -41,7 +40,7 @@ describe 'the project delete path', {:type => :feature} do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
     test_project.save
     id = test_project.id
-    visit "/projects/#{id}/edit"
+    visit "/projects/#{id}"
     click_button('Delete Project')
     expect(page).not_to have_content("Teaching Kids to Code")
   end
@@ -49,17 +48,17 @@ end
 
 # The user should be able to click on a project detail page and see a list of all volunteers working on that project. The user should be able to click on a volunteer to see the volunteer's detail page.
 
-# describe 'the volunteer detail page path', {:type => :feature} do
-#   it 'shows a volunteer detail page' do
-#     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
-#     test_project.save
-#     project_id = test_project.id.to_i
-#     test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
-#     test_volunteer.save
-#     visit "/projects/#{project_id}"
-#     click_link('Jasmine')
-#     fill_in('name', :with => 'Jane')
-#     click_button('Update Volunteer')
-#     expect(page).to have_content('Jane')
-#   end
-# end
+describe 'the volunteer detail page path', {:type => :feature} do
+  it 'shows a volunteer detail page' do
+    test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    test_project.save
+    project_id = test_project.id.to_i
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => project_id, :id => nil})
+    test_volunteer.save
+    visit "/projects/#{project_id}"
+    click_link('Jasmine')
+    fill_in('name', :with => 'Jane')
+    click_button('Update Volunteer')
+    expect(page).to have_content('Jane')
+  end
+end

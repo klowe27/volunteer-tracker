@@ -1,3 +1,30 @@
 <h1><%= @project.title %></h1>
-<a href="/projects/<%= @project.id %>/edit">
-  <button class="btn btn-primary">Edit Project</button></a>
+
+<% if @volunteers.any? %>
+  <h2>Volunteer List</h2>
+  <ul class="list-group">
+    <% @volunteers.each do |volunteer| %>
+      <li class="list-group-item"><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<h2>Update Project</h2>
+<form action="/projects/<%= @project.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <div class="form-group">
+    <label for="title">New Project Title</label>
+    <input type="text" name="title" class="form-control">
+  </div>
+  <button type="submit" class="btn btn-primary">Update Project</button>
+</form>
+</form>
+
+<form action="/projects/<%= @project.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="patch">
+
+  <button type="submit" class="btn btn-primary">Delete Project</button>
+</form>
+
+<a href="/">
+  <button class="btn btn-primary">Go Home</button></a>
