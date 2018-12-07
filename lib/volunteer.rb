@@ -86,4 +86,5 @@ class Volunteer
   def ==(another_object)
     self.id.==(another_object.id).&self.name.==(another_object.name)
   end
+
 end
