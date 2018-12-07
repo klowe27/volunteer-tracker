@@ -6,7 +6,7 @@ require('./lib/volunteer')
 require('pg')
 require('pry')
 
-# DB = PG.connect({dbname: 'volunteer_tracker'})
+DB = PG.connect({dbname: 'volunteer_tracker'})
 
 get '/' do
   @projects = Project.all
@@ -38,5 +38,11 @@ patch '/projects/:id/update' do
   new_title = params['title']
   @project.update({title: new_title, id: id})
   redirect('/')
-  # redirect('/projects/#{id}')
+end
+
+patch '/projects/:id/delete' do
+  id = params[:id].to_i
+  project = Project.find(id)
+  project.delete
+  redirect '/'
 end
