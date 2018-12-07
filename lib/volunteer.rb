@@ -28,6 +28,13 @@ class Volunteer
     @id = DB.exec("INSERT INTO volunteers (name, project_id) VALUES ('#{@name}', #{@project_id}) RETURNING id;").first["id"].to_i
   end
 
+  def update(attributes)
+    @name = attributes[:name]
+    @project_id = attributes[:project_id]
+    DB.exec("UPDATE volunteers SET name = '#{@name}', project_id = #{@project_id} WHERE id = #{@id};")
+
+  end
+
   def ==(another_object)
     self.id.==(another_object.id).&self.name.==(another_object.name)
   end
