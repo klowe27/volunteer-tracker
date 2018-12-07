@@ -3,7 +3,8 @@
 <h2>Project: <%= @project.title %></h2>
 
 <h2>Update Volunteer</h2>
-<form class="" action="/volunteers/<%= @volunteer.name %>/edit" method="post">
+<form class="" action="/volunteers/<%= @volunteer.id %>/edit" method="post">
+  <input type="hidden" name="_method" value="patch">
   <div class="form-group">
     <label for="name">New Name</label>
     <input type="text" name="name" class="form-control">
@@ -19,7 +20,7 @@
   <button type="submit" class="btn btn-primary">Update Volunteer</button>
 </form>
 
-<form action="/volunteers/<%= @volunteer.id %>/delect" method="post">
+<form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
   <input type="hidden" name="_method" value="patch">
 
   <button type="submit" class="btn btn-primary">Delete Volunteer</button>

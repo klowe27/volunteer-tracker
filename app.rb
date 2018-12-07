@@ -64,6 +64,13 @@ patch '/volunteers/:id/edit' do
   @volunteer = Volunteer.find(id)
   new_name = params['name']
   new_project_id = params['project_id']
-  @Volunteer.update({name: new_name, project_id: new_project_id, id: id})
-  redirect("/volunteers/#{params["id"]}")
+  @volunteer.update({name: new_name, project_id: new_project_id, id: id})
+  redirect("/volunteers/#{id}")
+end
+
+patch '/volunteers/:id/delete' do
+  id = params[:id].to_i
+  volunteer = Volunteer.find(id)
+  volunteer.delete
+  redirect("/")
 end
