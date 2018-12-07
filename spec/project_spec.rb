@@ -90,4 +90,15 @@ describe Project do
       expect(Project.all).to eq []
     end
   end
+
+  describe '.sort' do
+    it 'returns a list of all projects sorted alphabetically' do
+      project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+      project.save
+      project2 = Project.new({:title => 'Highway restoration', :id => nil})
+      project2.save
+      expect(Project.sort).to eq [project2, project1]
+    end
+  end
+
 end
