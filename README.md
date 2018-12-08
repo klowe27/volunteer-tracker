@@ -6,23 +6,34 @@
 
 ## Description
 
-This basic application is a volunteer tracker to enable a non-project to track their projects and volunteers.
+This basic application is a volunteer tracker to enable a non-project to track their projects and volunteers. A user can add a project, add volunteers and associate volunteers with a specific project.
+
+For each project, the the user can delete the project, update the project, or view project details, including associated volunteers and total hours worked on the project.
+
+For each volunteer, the user can delete the volunteer, update the volunteer, or view volunteer details, including associated project and total hours worked.
+
+Additionally, the user can sort their project and volunteer lists alphabetically. There is also search functionality, so the user is able to search the site by project title or volunteer name, and they will be directed to the appropriate details page.
+
+Here's a sample of the homepage: 
+<img src="./public/img/sample1.png">
+<img src="./public/img/sample2.png">
+
 
 ## Setup/Installation Requirements
 
-* View directly at:
-* Or, in the command line, clone this repository with $ git clone https://github.com/klowe27/volunteer-tracker
-* Navigate into the directory in the command line and install dependent gems by using command $ bundle install
+* In the command line, clone this repository with $ git clone https://github.com/klowe27/volunteer-tracker
+* Navigate into the directory and in the command line install dependent gems by using command $ bundle install
 * To create the necessary database, use the following commands in the command line while in the root directory (must have psql installed):
   * createdb volunteer_tracker
   * psql volunteer_tracker < database_backup.sql
   * createdb -T volunteer_tracker volunteer_tracker_test
-* To launch the application, use command $ ruby app.rb
+* To launch the application, while in the root directory use command $ ruby app.rb
 * In any browser (preferably Chrome), navigate to http://localhost:4567/
 
 ## Known Bugs
 
-* There are no known bugs at this time.
+* There is no form validation in place, so the user can submit blank form fields
+* The site is not responsive and not optimized for smaller screens
 
 ## Support and contact details
 
@@ -30,7 +41,7 @@ If you have any questions or issues, please contact kristin.lowe1@gmail.com. Or,
 
 ## Technologies Used
 
-Ruby, Sinatra, psql, Capybara, HTML, CSS and Git.
+Ruby, Sinatra, psql, RSpec, Capybara, HTML, CSS, Pry, and Git.
 
 ### License
 
