@@ -14,8 +14,10 @@ For each volunteer, the user can delete the volunteer, update the volunteer, or 
 
 Additionally, the user can sort their project and volunteer lists alphabetically. There is also search functionality, so the user is able to search the site by project title or volunteer name, and they will be directed to the appropriate details page.
 
-Here's a sample of the homepage: 
+Here's a screenshot of the homepage where a user can add projects and volunteers:
 <img src="./public/img/sample1.png">
+
+Here's a screenshot of the homepage where a user can view and sort their projects and volunteers. 
 <img src="./public/img/sample2.png">
 
 
