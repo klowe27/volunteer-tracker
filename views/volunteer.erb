@@ -3,6 +3,8 @@
 <p><strong>Project:</strong> <%= @project.title %></p>
 <p><strong>Hours:</strong> <%= @volunteer.hours %></p>
 
+<form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="patch">
 <button type="submit" class="btn btn-primary">Delete Volunteer</button>
 </form>
 
@@ -29,6 +31,3 @@
 
   <button type="submit" class="btn btn-primary">Update Volunteer</button>
 </form>
-
-<form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
-  <input type="hidden" name="_method" value="patch">
