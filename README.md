@@ -6,7 +6,7 @@
 
 ## Description
 
-This basic application is a volunteer tracker to enable a non-project to track their projects and volunteers. A user can add a project, add volunteers and associate volunteers with a specific project.
+This application is a volunteer tracker to enable a non-project to track their projects and volunteers. A user can add a project, add volunteers and associate volunteers with a specific project.
 
 For each project, the the user can delete the project, update the project, or view project details, including associated volunteers and total hours worked on the project.
 
@@ -17,7 +17,7 @@ Additionally, the user can sort their project and volunteer lists alphabetically
 Here's a screenshot of the homepage where a user can add projects and volunteers:
 <img src="./public/img/sample1.png">
 
-Here's a screenshot of the homepage where a user can view and sort their projects and volunteers. 
+Here's a screenshot of the homepage where a user can view and sort their projects and volunteers:
 <img src="./public/img/sample2.png">
 
 
