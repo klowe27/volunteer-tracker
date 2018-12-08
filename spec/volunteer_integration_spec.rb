@@ -47,6 +47,20 @@ describe 'the project delete path', {:type => :feature} do
   end
 end
 
+describe 'the Volunteer creation path', {:type => :feature} do
+  it 'lets a user add a volunteer' do
+    project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    project.save
+    id = project.id
+    visit '/'
+    fill_in('name', :with => 'Jelly')
+    fill_in('hours', :with => 20)
+    select(project.title, :from => 'project_id')
+    click_button('Add Volunteer')
+    expect(page).to have_content('Jelly')
+  end
+end
+
 describe 'the volunteer detail page path', {:type => :feature} do
   it 'shows a volunteer detail page' do
     test_project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
@@ -74,5 +88,22 @@ describe 'the volunteer delete path', {:type => :feature} do
     visit "/volunteers/#{id}"
     click_button('Delete Volunteer')
     expect(page).not_to have_content('Jasmine')
+  end
+end
+
+describe 'the volunteer update path', {:type => :feature} do
+  it 'allows a user to change the name, hours and project of the volunteer' do
+    project = Project.new({:title => 'Teaching Kids to Code', :id => nil})
+    project.save
+    id = project.id
+    test_volunteer = Volunteer.new({:name => 'Jasmine', :project_id => id, :hours => 4, :id => nil})
+    test_volunteer.save
+    visit '/'
+    click_link('Jasmine')
+    fill_in('name', :with => 'Kelly')
+    fill_in('hours', :with => 10)
+    select(project.title, :from => 'project_id')
+    click_button('Update Volunteer')
+    expect(page).to have_content('Kelly')
   end
 end
