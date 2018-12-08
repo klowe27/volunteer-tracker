@@ -27,7 +27,7 @@ Here's a screenshot of the homepage where a user can view and sort their project
 * Navigate into the directory and in the command line install dependent gems by using command $ bundle install
 * To create the necessary database, use the following commands in the command line while in the root directory (must have psql installed):
   * createdb volunteer_tracker
-  * psql volunteer_tracker < database_backup.sql
+  * psql volunteer_tracker < my_database.sql
   * createdb -T volunteer_tracker volunteer_tracker_test
 * To launch the application, while in the root directory use command $ ruby app.rb
 * In any browser (preferably Chrome), navigate to http://localhost:4567/
