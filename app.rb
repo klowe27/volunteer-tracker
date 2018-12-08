@@ -10,6 +10,7 @@ DB = PG.connect({dbname: 'volunteer_tracker'})
 
 get '/' do
   @projects = Project.all
+  @volunteers = Volunteer.all
   erb :index
 end
 
@@ -59,8 +60,21 @@ patch '/projects/:id/delete' do
   redirect '/'
 end
 
-get '/sort' do
+get '/sort_projects' do
   @projects = Project.sort
+  @volunteers = Volunteer.all
+  erb :index
+end
+
+get '/sort_volunteers' do
+  @projects = Project.sort
+  @volunteers = Volunteer.sort
+  erb :index
+end
+
+get '/sort_volunteers_hours' do
+  @projects = Project.sort
+  @volunteers = Volunteer.sort_by_hours
   erb :index
 end
 

@@ -1,4 +1,12 @@
-<h1><%= @project.title %></h1>
+<h2>Project Details</h2>
+<p><strong>Name:</strong> <%= @project.title %></p>
+<p><strong>Total Volunteers:</strong> <%= @project.volunteers.length %></p>
+<p><strong>Total Hours:</strong> <%= @project.hours %></p>
+
+<form action="/projects/<%= @project.id %>/delete" method="post">
+  <input type="hidden" name="_method" value="patch">
+<button type="submit" class="btn btn-primary">Delete Project</button>
+</form>
 
 <% if @volunteers.any? %>
   <h2>Volunteer List</h2>
@@ -32,11 +40,4 @@
     <input type="text" name="title" class="form-control">
   </div>
   <button type="submit" class="btn btn-primary">Update Project</button>
-</form>
-</form>
-
-<form action="/projects/<%= @project.id %>/delete" method="post">
-  <input type="hidden" name="_method" value="patch">
-
-  <button type="submit" class="btn btn-primary">Delete Project</button>
 </form>

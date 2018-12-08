@@ -1,7 +1,7 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-5 form_left">
 
-  <h2>Add a Project</h2>
+  <h2 class="form_heading">Add a Project</h2>
   <form class="" action="/projects/add" method="post">
     <div class="form-group">
       <label for="title">Project Title</label>
@@ -11,9 +11,9 @@
   </form>
 </div>
 
-<div class="col-md-6">
   <% if @projects.any? %>
-    <h2>Add a Volunteer</h2>
+  <div class="col-md-6 form_right">
+    <h2 class="form_heading">Add a Volunteer</h2>
     <form class="" action="/volunteers/add" method="post">
       <div class="form-group">
         <label for="name">Name</label>
@@ -23,19 +23,19 @@
         <label for="hours">Volunteer hours</label>
         <input type="number" name="hours" class="form-control">
       </div>
-
-      <label for="project_ids">Project</label>
-      <select name="project_id">
-        <% @projects.each do |project| %>
-          <option value='<%= project.id %>'><%= project.title %></option>
-      <% end %>
-      </select>
-      <br>
+      <div class="form-group">
+        <label for="project_ids">Project</label>
+        <select name="project_id" class="form-control">
+          <% @projects.each do |project| %>
+            <option value='<%= project.id %>'><%= project.title %></option>
+        <% end %>
+        </select>
+      </div>
       <button type="submit" class="btn btn-primary">Add Volunteer</button>
 
     </form>
-  <% end %>
   </div>
+  <% end %>
 </div>
 
 <div class="row">
@@ -57,12 +57,36 @@
             <td><span class="badge badge-primary badge-pill"><%= project.volunteers.length %></span></td>
             <td><span class="badge badge-primary badge-pill"><%= project.hours %></span> </td>
           </tr>
-            <% end %>
+        <% end %>
         </tbody>
       </table>
       </ul>
-      <a href="/sort"><button class="btn-primary btn">Sort A-Z</button></a>
-    <% end %>
+      <a href="/sort_projects"><button class="btn-primary btn">Sort A-Z</button></a>
   </table>
+  <% end %>
+
+  <% if @volunteers.any? %>
+  <h2>Volunteer List</h2>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Hours</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @volunteers.each do |volunteer| %>
+      <tr>
+        <td><a href="/volunteers/<%= volunteer.id %>"><%= volunteer.name %></a></td>
+        <td><span class="badge badge-primary badge-pill"><%= volunteer.hours %></span></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+
+  <a href="/sort_volunteers"><button class="btn-primary btn">Sort A-Z</button></a>
+  <a href="/sort_volunteers_hours"><button class="btn-primary btn">Sort by hours</button></a>
+  <% end %>
   </div>
 </div>

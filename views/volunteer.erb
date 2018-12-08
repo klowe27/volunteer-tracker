@@ -1,7 +1,10 @@
-<h1>Volunteer Details</h1>
-<h2>Name: <%= @volunteer.name %></h2>
-<h2>Project: <%= @project.title %></h2>
-<h2>Hours: <%= @volunteer.hours %></h2>
+<h2>Volunteer Details</h2>
+<p><strong>Name:</strong> <%= @volunteer.name %></p>
+<p><strong>Project:</strong> <%= @project.title %></p>
+<p><strong>Hours:</strong> <%= @volunteer.hours %></p>
+
+<button type="submit" class="btn btn-primary">Delete Volunteer</button>
+</form>
 
 <h2>Update Volunteer</h2>
 <form class="" action="/volunteers/<%= @volunteer.id %>/edit" method="post">
@@ -15,18 +18,17 @@
     <input type="text" name="hours" class="form-control">
   </div>
 
-  <label for="project_ids">New Project</label>
-  <select name="project_id">
-    <% @projects.each do |project| %>
-      <option value='<%= project.id %>'><%= project.title %></option>
-  <% end %>
-  </select>
-  <br>
+  <div class="form-group">
+    <label for="project_ids">New Project</label>
+    <select name="project_id" class="form-control">
+      <% @projects.each do |project| %>
+        <option value='<%= project.id %>'><%= project.title %></option>
+    <% end %>
+    </select>
+  </div>
+
   <button type="submit" class="btn btn-primary">Update Volunteer</button>
 </form>
 
 <form action="/volunteers/<%= @volunteer.id %>/delete" method="post">
   <input type="hidden" name="_method" value="patch">
-
-  <button type="submit" class="btn btn-primary">Delete Volunteer</button>
-</form>
